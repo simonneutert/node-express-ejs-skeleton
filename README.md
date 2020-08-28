@@ -10,3 +10,7 @@ Basic barebone NodeJS app with SQLITE3 as development database.
 ## Ingredients
 
 plain NodeJS and Express and EJS as templating language.
+
+### Where the magic happens 
+
+see the files in `./routes/` to get a grasp how everything is glued together.
