@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="<%= configuration.html.lang %>" dir="<%= configuration.html.dir %>">
+  <%- include('shared/header') -%>
+  <body>
+    <%- yield(file, locals) -%>
+
+    <%- include('shared/footer') -%>
+  </body>
+</html>
