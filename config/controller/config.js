@@ -1,21 +1,21 @@
-var yieldContent = require('./yield-content')
+const yieldContent = require("./yield-content");
 
 module.exports = {
   configuration: {
     html: {
-      lang: 'de',
-      dir: 'ltr',
+      lang: "de",
+      dir: "ltr",
       header: {
-        title: 'Edit Default Meta Title Here'
-      }
+        title: "Edit Default Meta Title Here",
+      },
     },
-    rows: '',
-    row: '',
-    data: '',
-    file: 'index.ejs'
+    rows: "",
+    row: "",
+    data: "",
+    file: "index.ejs",
   },
   yield: yieldContent,
-  merge: function(b) {
-    return Object.assign(this, b)
-  }
-}
+  merge: function (b) {
+    return Object.assign(this, b);
+  },
+};
