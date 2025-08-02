@@ -13,7 +13,7 @@ async function startServer() {
     console.log("🔄 Initializing database...");
     const seedDatabase = require("./database/seed");
     await seedDatabase();
-    
+
     // Logging
     const timestamp = require("./config/router/timestamp");
     app.use(timestamp);
@@ -29,7 +29,6 @@ async function startServer() {
       console.log(`🚀 Server started successfully on port ${port}!`);
       console.log(`🌍 Application available at: http://localhost:${port}`);
     });
-    
   } catch (error) {
     console.error("❌ Failed to start server:");
     console.error("Error:", error.message);
