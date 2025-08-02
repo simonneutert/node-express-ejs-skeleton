@@ -6,19 +6,37 @@ const router = express.Router();
 var app = express();
 const port = 3000;
 
-// SEEDING
-const seedDatabase = require("./database/seed");
-seedDatabase();
+// Async function to start the server
+async function startServer() {
+  try {
+    // SEEDING - Wait for database to be seeded before starting server
+    console.log("🔄 Initializing database...");
+    const seedDatabase = require("./database/seed");
+    await seedDatabase();
+    
+    // Logging
+    const timestamp = require("./config/router/timestamp");
+    app.use(timestamp);
 
-// Logging
-const timestamp = require("./config/router/timestamp");
-app.use(timestamp);
+    // ROUTES
+    var rootRoutes = require("./routes/root");
+    app.use("/", rootRoutes);
+    var welcomeRoutes = require("./routes/welcome");
+    app.use("/welcome", welcomeRoutes);
 
-// ROUTES
-var rootRoutes = require("./routes/root");
-app.use("/", rootRoutes);
-var welcomeRoutes = require("./routes/welcome");
-app.use("/welcome", welcomeRoutes);
+    // Start Server
+    app.listen(port, () => {
+      console.log(`🚀 Server started successfully on port ${port}!`);
+      console.log(`🌍 Application available at: http://localhost:${port}`);
+    });
+    
+  } catch (error) {
+    console.error("❌ Failed to start server:");
+    console.error("Error:", error.message);
+    console.error("Stack:", error.stack);
+    process.exit(1);
+  }
+}
 
-// Start Server
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+// Start the application
+startServer();
